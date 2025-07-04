@@ -88,7 +88,7 @@ swiftPackageConfig {
     create("nativeIosShared") {
         // optional parameters
         // the ios minimal version
-        // minIos = "12.0"
+         minIos = "13.0"
         // the tvos minimal version
         // minTvos = "12.0"
         // the watchos minimal version
@@ -108,6 +108,14 @@ swiftPackageConfig {
         // swiftBinPath = "/path/to/.swiftly/bin/swift"
         copyDependenciesToApp = true
         dependency {
+            remotePackageVersion(
+                url = URI("https://github.com/nats-io/nats.swift.git"),
+                products = {
+                    add("Nats", exportToKotlin = true, isIncludedInExportedPackage = true)
+                    add("JetStream", exportToKotlin = true, isIncludedInExportedPackage = true)
+                },
+                version = "0.4.0",
+            )
             remotePackageVersion(
                 url = URI("https://github.com/firebase/firebase-ios-sdk.git"),
                 // Libraries from the package

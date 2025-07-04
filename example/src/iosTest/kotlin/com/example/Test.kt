@@ -5,13 +5,20 @@ package com.example
 import DummyFramework.MyDummyFramework
 import FirebaseAnalytics.FIRConsentStatusGranted
 import kotlinx.cinterop.BetaInteropApi
+import nativeIosShared.NatsClientBridge
 import nativeIosShared.TestClass
+import platform.Foundation.NSURL
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 @OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
 class Test {
+    @Test
+    fun makesNatsClient() {
+        NatsClientBridge(NSURL(string = "nats://localhost:4222"))
+    }
+
     @Test
     fun getDataFromBridgeTest() {
         assertEquals("HelloTest!", TestClass().getSomeValue())

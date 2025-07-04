@@ -7,11 +7,15 @@ import FirebaseAnalytics.FIRConsentStatusGranted
 import FirebaseCore.FIRApp
 import kotlinx.cinterop.ExperimentalForeignApi
 import nativeIosShared.MySwiftDummyClass
+import nativeIosShared.NatsClientBridge
 import nativeIosShared.TestClass
+import platform.Foundation.NSURL
 import platform.UIKit.UIDevice
 import platform.UIKit.UIView
 
 class IOSPlatform : Platform {
+    val natsClient = NatsClientBridge(NSURL(string = "nats://localhost:4222"))
+
     fun getMyFrameworkResource(): String? = MyDummyFramework().getMyResource()
 
     fun getMyPackageResource(): String? = LocalSourceDummyFramework.LocalSourceDummy().getMyInternalResource()
