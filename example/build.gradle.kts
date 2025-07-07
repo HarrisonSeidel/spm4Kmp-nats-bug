@@ -35,6 +35,20 @@ kotlin {
     }
 
     listOf(
+        iosSimulatorArm64(),
+    ).forEach {
+        it.binaries.getTest("debug").apply {
+            // Manually link libsodium, required by nats.swift
+            linkerOpts +=
+                listOf(
+                    "-L",
+                    "${projectDir.path}/SPM/spmKmpPlugin/nativeIosShared/scratch/arm64-apple-ios-simulator/release",
+                    "-lsodium",
+                )
+        }
+    }
+
+    listOf(
         macosArm64(),
     ).forEach {
         it.binaries.framework {
